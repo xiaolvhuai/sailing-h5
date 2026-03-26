@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>御风东渡 · 深港帆船私享之旅</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Noto+Serif+SC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8975a;--gold-light:#d4b483;--cream:#f7f3ec;--cream-dark:#ede7da;--navy:#0d1b2e;--muted:#6b6358;--rule:rgba(184,151,90,0.28);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--cream);color:#0e1117;font-family:'Noto Serif SC',serif;font-weight:300;line-height:1.85;-webkit-font-smoothing:antialiased;}
+
+/* COVER */
+.cover{position:relative;height:100vh;min-height:640px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;}
+/* 【修改1：替换为航海大帆船高清主图】 */
+.cover-img{position:absolute;inset:0;background-image:url('cover.jpg');background-size:cover;background-position:center 60%;}
+.cover-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(6,15,28,0.3) 0%,rgba(6,15,28,0.1) 25%,rgba(6,15,28,0.5) 60%,rgba(6,15,28,0.92) 100%);}
+.cover-content{position:relative;z-index:2;padding:60px 72px;}
+.cover-eyebrow{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;letter-spacing:0.3em;color:var(--gold-light);margin-bottom:18px;opacity:0;animation:fadeUp 0.8s ease 0.2s forwards;}
+.cover-rule-line{width:44px;height:1px;background:var(--gold);margin-bottom:22px;opacity:0;animation:fadeUp 0.8s ease 0.3s forwards;}
+.cover-title{font-family:'Playfair Display',serif;font-size:clamp(44px,6.5vw,78px);font-weight:400;color:#fff;line-height:1.1;margin-bottom:14px;opacity:0;animation:fadeUp 0.9s ease 0.4s forwards;}
+.cover-title em{font-style:italic;color:var(--gold-light);}
+.cover-subtitle{font-size:15px;font-weight:300;color:rgba(255,255,255,0.58);letter-spacing:0.2em;margin-bottom:44px;opacity:0;animation:fadeUp 0.9s ease 0.5s forwards;}
+.cover-meta{display:flex;gap:40px;flex-wrap:wrap;padding-top:26px;border-top:1px solid rgba(184,151,90,0.3);opacity:0;animation:fadeUp 0.9s ease 0.65s forwards;}
+.meta-label{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
+.meta-value{font-size:14px;color:rgba(255,255,255,0.85);letter-spacing:0.04em;}
+
+hr.rule{border:none;border-top:1px solid var(--rule);}
+
+.section{padding:84px 72px;max-width:880px;margin:0 auto;}
+.section-label{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12px;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(24px,3.2vw,36px);font-weight:400;color:var(--navy);line-height:1.25;margin-bottom:26px;}
+.section-title em{font-style:italic;color:var(--gold);}
+.section-body{font-size:15px;color:#3a3530;line-height:2;}
+.section-body p+p{margin-top:16px;}
+
+/* PHOTO FULL */
+.photo-strip{width:100%;overflow:hidden;position:relative;}
+.photo-strip img{width:100%;height:100%;object-fit:cover;display:block;}
+.ps-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(6,15,28,0.5) 100%);}
+.ps-caption{position:absolute;bottom:22px;right:28px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12px;letter-spacing:0.2em;color:rgba(255,255,255,0.55);}
+
+/* SAILING EXPERIENCE FEATURE */
+.sail-feature{background:var(--navy);padding:0;}
+.sail-feature-grid{display:grid;grid-template-columns:1fr 1fr;}
+.sail-text{padding:72px 60px;display:flex;flex-direction:column;justify-content:center;}
+.sail-text .section-label{color:var(--gold);}
+.sail-text .section-title{color:#fff;margin-bottom:18px;}
+.sail-text .section-body{color:rgba(255,255,255,0.58);font-size:14px;}
+.sail-img{overflow:hidden;min-height:500px;}
+.sail-img img{width:100%;height:100%;object-fit:cover;display:block;}
+
+/* HIGHLIGHTS STRIP (Replaced old route-strip) */
+.highlights-strip{background:rgba(255,255,255,0.04);border-top:1px solid rgba(184,151,90,0.2);padding:48px 60px;}
+.hl-summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;}
+.hl-summary-card{text-align:center;}
+.hl-summary-icon{font-size:24px;margin-bottom:12px;display:block;}
+.hl-summary-title{font-family:'Playfair Display',serif;font-size:16px;color:#fff;font-weight:400;margin-bottom:8px;}
+.hl-summary-desc{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.7;}
+
+/* ITINERARY */
+.itin-wrap{max-width:880px;margin:0 auto;padding:0 72px 84px;}
+.itin-day{display:grid;grid-template-columns:72px 1fr;gap:0 36px;margin-bottom:52px;position:relative;}
+.itin-day::after{content:'';position:absolute;left:72px;top:48px;bottom:-52px;width:1px;background:linear-gradient(to bottom,var(--rule) 0%,transparent 100%);transform:translateX(18px);}
+.itin-day:last-child::after{display:none;}
+.day-num{text-align:right;padding-top:2px;}
+.day-num .d{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:10px;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;display:block;}
+.day-num .n{font-family:'Playfair Display',serif;font-size:40px;font-weight:400;color:var(--navy);line-height:1;display:block;}
+.day-content{padding-left:36px;border-left:1px solid var(--rule);}
+.day-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:var(--navy);margin-bottom:4px;}
+.day-title em{font-style:italic;color:var(--gold);}
+.day-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+.day-items{list-style:none;}
+.day-items li{font-size:14px;color:#3a3530;line-height:1.9;padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.05);display:flex;gap:16px;align-items:baseline;}
+.day-items li:last-child{border-bottom:none;}
+.item-time{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12px;color:var(--gold);min-width:48px;letter-spacing:0.05em;}
+.item-text{flex:1;}
+.item-hl{display:inline;border-left:2px solid var(--gold);background:linear-gradient(to right,rgba(184,151,90,0.1),transparent);padding:2px 10px;border-radius:0 2px 2px 0;font-style:italic;}
+
+/* HK EXPERIENCE NARRATIVE */
+.hk-section{background:var(--cream-dark);padding:84px 72px;}
+.hk-inner{max-width:880px;margin:0 auto;}
+.hk-narrative-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:44px;}
+.hk-narrative-card{background:var(--cream);padding:24px;border-top:2px solid var(--gold);}
+.hk-narrative-img{width:100%;height:220px;object-fit:cover;margin-bottom:20px;display:block;}
+.hk-narrative-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:400;color:var(--navy);margin-bottom:12px;}
+.hk-narrative-body{font-size:13.5px;color:var(--muted);line-height:1.9;}
+
+/* HIGHLIGHTS (Original) */
+.hl-section{background:var(--navy);padding:84px 72px;position:relative;overflow:hidden;}
+.hl-section::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23b8975a' fill-opacity='0.025'%3E%3Cpath d='M50 50v-6h-3v6h-6v3h6v6h3v-6h6v-3h-6z'/%3E%3C/g%3E%3C/svg%3E");}
+.hl-inner{position:relative;z-index:1;max-width:880px;margin:0 auto;}
+.hl-inner .section-label{color:var(--gold);}
+.hl-inner .section-title{color:#fff;}
+.hl-grid{margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(184,151,90,0.15);}
+.hl-card{background:var(--navy);padding:36px 32px;position:relative;}
+.hl-num{font-family:'Playfair Display',serif;font-size:48px;font-weight:400;color:rgba(184,151,90,0.1);line-height:1;position:absolute;top:20px;right:20px;}
+.hl-title{font-family:'Playfair Display',serif;font-size:15px;color:#fff;margin-bottom:10px;font-weight:400;}
+.hl-body{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.9;}
+
+/* SPEAKER */
+.speaker-section{padding:84px 72px;max-width:880px;margin:0 auto;}
+.speaker-card{border:1px solid var(--rule);padding:40px 48px;background:rgba(13,27,46,0.03);}
+.speaker-name{font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:var(--navy);margin-bottom:6px;}
+.speaker-role{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;letter-spacing:0.15em;color:var(--gold);margin-bottom:24px;}
+.speaker-creds{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px;}
+.cred-tag{font-size:11px;letter-spacing:0.08em;color:var(--muted);border:1px solid var(--rule);padding:5px 14px;border-radius:1px;font-family:'Cormorant Garamond',serif;font-style:italic;}
+.speaker-topic{font-size:14px;color:#3a3530;line-height:1.9;border-top:1px solid var(--rule);padding-top:24px;}
+.speaker-topic strong{color:var(--navy);font-weight:400;}
+.topic-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;}
+.topic-tag{font-size:12px;background:rgba(184,151,90,0.1);color:var(--gold);padding:4px 14px;border-radius:1px;letter-spacing:0.05em;}
+
+/* SERVICES */
+.services{background:var(--cream-dark);padding:84px 72px;}
+.svc-inner{max-width:880px;margin:0 auto;}
+.svc-grid{margin-top:40px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px 24px;}
+.svc-card{border-top:2px solid var(--gold);padding-top:20px;background:transparent;}
+.svc-icon{font-size:20px;margin-bottom:12px;display:block;}
+.svc-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:400;color:var(--navy);margin-bottom:8px;}
+.svc-body{font-size:13px;color:var(--muted);line-height:1.85;}
+
+/* QUOTE */
+.quote-section{padding:80px 72px;text-align:center;}
+.quote-mark{font-family:'Playfair Display',serif;font-size:72px;color:var(--gold);opacity:0.25;line-height:0.6;margin-bottom:22px;}
+.quote-text{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(17px,2.2vw,24px);color:var(--navy);line-height:1.65;max-width:600px;margin:0 auto 18px;}
+.quote-attr{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12px;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;}
+
+/* NOTES */
+.notes{max-width:880px;margin:0 auto;padding:0 72px 84px;}
+.notes-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:var(--navy);margin-bottom:28px;}
+.notes-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px 48px;}
+.note-item{display:flex;gap:14px;}
+.note-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:10px;}
+.note-text{font-size:14px;color:#3a3530;line-height:1.8;}
+.note-label{font-weight:400;color:var(--navy);}
+
+/* FOOTER */
+.footer{background:var(--navy);padding:52px 72px;display:flex;justify-content:space-between;align-items:flex-end;}
+.f-title{font-family:'Playfair Display',serif;font-size:17px;color:#fff;margin-bottom:6px;}
+.f-sub{font-size:12px;color:rgba(255,255,255,0.3);letter-spacing:0.1em;}
+.f-right{text-align:right;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:11px;color:rgba(255,255,255,0.22);letter-spacing:0.15em;line-height:1.8;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+@media(max-width:720px){
+  .cover-content,.section,.itin-wrap,.hk-section,.hl-section,.speaker-section,.services,.quote-section,.notes,.footer{padding-left:24px;padding-right:24px;}
+  .sail-feature-grid{grid-template-columns:1fr;}
+  .sail-img{min-height:260px;}
+  .hk-narrative-grid{grid-template-columns:1fr;}
+  .hl-grid,.svc-grid,.notes-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-img"></div>
+  <div class="cover-overlay"></div>
+  <div class="cover-content">
+    <p class="cover-eyebrow">帆船协会会长带队 · 双船长保驾护航 · 限额私享计划</p>
+    <div class="cover-rule-line"></div>
+    <h1 class="cover-title">御风<em>东渡</em><br>深港帆船私享之旅</h1>
+    <p class="cover-subtitle">扬帆出海 · 离岛探访 · 香港私享沙龙</p>
+    <div class="cover-meta">
+      <div><div class="meta-label">行程</div><div class="meta-value">四天三晚</div></div>
+      <div><div class="meta-label">出发</div><div class="meta-value">武汉 → 深圳 → 香港</div></div>
+      <div><div class="meta-label">出海</div><div class="meta-value">大型帆船 · 双船长</div></div>
+      <div><div class="meta-label">名额</div><div class="meta-value">仅限十席</div></div>
+    </div>
+  </div>
+</div>
+
+<hr class="rule">
+
+<div class="section reveal">
+  <p class="section-label">这次旅程是什么</p>
+  <h2 class="section-title">不是出游，<em>是一种选择</em></h2>
+  <div class="section-body">
+    <p>驾驶大型帆船从深圳湾出发，穿越伶仃洋，正式入境香港——这条路线，没有任何成熟的旅行产品可以复制。帆船协会会长亲自带队，两名专业船长全程保驾护航。无论你是第一次踏上甲板的新手，还是早已熟悉风帆语言的老手，都能在这次旅程里找到属于自己的那份自在。</p>
+    <p>香港的那一天，是南丫岛渔村的海风与地道滋味，是太平山顶缆车与维港日落，是一场只属于在座者的闭门私享沙龙。出发前，你或许只是想去看看海；回来之后，你可能带着一些以前没想过的问题。</p>
+  </div>
+</div>
+
+<div class="sail-feature">
+  <div class="sail-feature-grid">
+    <div class="sail-img">
+      <img src="pic1.jpg" alt="帆船航行特写" style="object-position:center;">
+    </div>
+    <div class="sail-text">
+      <p class="section-label">核心体验</p>
+      <h2 class="section-title">驾驶帆船，<em>入境香港</em></h2>
+      <div class="section-body">
+        <p>从深圳湾游艇会起锚，航经伶仃洋，绕过香港西面水道正式入境——这段航程，每一海里都是普通旅行者无法触及的体验。</p>
+        <p>帆船不是渡轮，也不是游轮。在甲板上，你能感受到风向的变化、船体随浪涌的起伏，以及那种"自己驾着一艘船去往另一片水域"才有的真实感。</p>
+        <p>双船长全程护航，新手可以参与操帆，老手可以亲手掌舵。</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="highlights-strip">
+    <div class="hl-summary-grid">
+      <div class="hl-summary-card">
+        <span class="hl-summary-icon">⛵</span>
+        <h4 class="hl-summary-title">帆船跨境入港</h4>
+        <p class="hl-summary-desc">穿越伶仃洋，以非日常的纯粹航海方式直达香港，市面无此常规路线。</p>
+      </div>
+      <div class="hl-summary-card">
+        <span class="hl-summary-icon">🏝️</span>
+        <h4 class="hl-summary-title">离岛原生慢游</h4>
+        <p class="hl-summary-desc">深入无车马喧嚣的避世南丫岛渔村，品尝地道风味，感受截然不同的香港。</p>
+      </div>
+      <div class="hl-summary-card">
+        <span class="hl-summary-icon">🏛️</span>
+        <h4 class="hl-summary-title">闭门财富沙龙</h4>
+        <p class="hl-summary-desc">特邀顶尖专家于金融腹地剖析宏观格局与资产配置，EMBA圈层的高净值智慧碰撞。</p>
+      </div>
+      <div class="hl-summary-card">
+        <span class="hl-summary-icon">🌃</span>
+        <h4 class="hl-summary-title">太平山顶夜色</h4>
+        <p class="hl-summary-desc">百年复古缆车登顶，俯瞰世界级璀璨维港夜景，尽享繁华巅峰的视觉震撼。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="padding:80px 0 0;background:var(--cream);">
+  <div style="max-width:880px;margin:0 auto;padding:0 72px 40px;" class="reveal">
+    <p class="section-label">行程安排</p>
+    <h2 class="section-title">四天，<em>每一天都有重量</em></h2>
+  </div>
+</div>
+
+<div class="itin-wrap">
+  <div class="itin-day reveal">
+    <div class="day-num"><span class="d">Day</span><span class="n">1</span></div>
+    <div class="day-content">
+      <h3 class="day-title">集结，<em>启程</em></h3>
+      <p class="day-sub">武汉 → 深圳</p>
+      <ul class="day-items">
+        <li><span class="item-time">上午</span><span class="item-text">武汉出发，高铁直达深圳。同行者在车厢里相遇，旅程从这里开始热身。</span></li>
+        <li><span class="item-time">抵深</span><span class="item-text">入住深圳湾畔精选酒店，稍作休整。</span></li>
+        <li><span class="item-time">晚间</span><span class="item-text"><span class="item-hl">会长主持欢迎晚宴</span>——轻松酒会形式，出行须知，相互认识。</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="itin-day reveal">
+    <div class="day-num"><span class="d">Day</span><span class="n">2</span></div>
+    <div class="day-content">
+      <h3 class="day-title">扬帆，<em>入港</em></h3>
+      <p class="day-sub">深圳湾 → 香港 → 南丫岛</p>
+      <ul class="day-items">
+        <li><span class="item-time">09:00</span><span class="item-text">深圳湾游艇会集合，办理离境手续，登上帆船，听取安全简报。</span></li>
+        <li><span class="item-time">出海</span><span class="item-text"><span class="item-hl">穿越伶仃洋，驶向香港水域</span>——船头破浪，内地海岸线在身后渐渐缩小，香港离岛的轮廓从海雾中升起。可亲手体验操帆，亦可静坐甲板，让海风替你回答一切。</span></li>
+        <li><span class="item-time">入港</span><span class="item-text">抵达香港入境口岸，完成正式入境手续。</span></li>
+        <li><span class="item-time">离岛</span><span class="item-text"><span class="item-hl">驶往南丫岛</span>——专属导游带领漫步渔村旧街，穿越榕树湾，探访香港最原生的一面；地道风味午餐，感受这座岛屿最真实的滋味。</span></li>
+        <li><span class="item-time">下午</span><span class="item-text">返航香港市区，大巴接驳酒店，自由休整。</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="itin-day reveal">
+    <div class="day-num"><span class="d">Day</span><span class="n">3</span></div>
+    <div class="day-content">
+      <h3 class="day-title">私享，<em>与日落</em></h3>
+      <p class="day-sub">香港 · 闭门沙龙 · 太平山</p>
+      <ul class="day-items">
+        <li><span class="item-time">早茶</span><span class="item-text"><span class="item-hl">香港老字号茶楼，一盅两件</span>——虾饺、烧卖、叉烧包，配一壶热普洱。听一听这座城市在清晨的声音。</span></li>
+        <li><span class="item-time">上午</span><span class="item-text"><span class="item-hl">私人银行会所 · 闭门沙龙</span>——受邀嘉宾深度分享，仅限本次参与者，不对外开放，不录制传播。沙龙结束后设自由答疑交流。</span></li>
+        <li><span class="item-time">下午</span><span class="item-text"><span class="item-hl">自由漫游香港</span>——海港城购物、大馆文化艺术中心、中环半山扶梯、兰桂坊……这座城市值得你自己去发现一两件事。</span></li>
+        <li><span class="item-time">傍晚</span><span class="item-text"><span class="item-hl">山顶缆车 · 太平山顶</span>——乘坐运营逾百年的历史缆车登顶，在凌霄阁观景台等待维港在暮色里燃起灯火。那一刻的维港夜景，是这座城市最诚意的一面。</span></li>
+        <li><span class="item-time">夜间</span><span class="item-text">返回酒店。</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="itin-day reveal">
+    <div class="day-num"><span class="d">Day</span><span class="n">4</span></div>
+    <div class="day-content">
+      <h3 class="day-title">道别，<em>归程</em></h3>
+      <p class="day-sub">香港 → 武汉</p>
+      <ul class="day-items">
+        <li><span class="item-time">早餐</span><span class="item-text">酒店早餐，从容收拾行囊。</span></li>
+        <li><span class="item-time">上午</span><span class="item-text">乘高铁直通车，西九龙站出发，无需换乘，约四小时直抵武汉.</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="photo-strip">
+  <img src="pic2.jpg" alt="维多利亚港全景俯瞰">
+</div>
+
+<div class="hk-section">
+  <div class="hk-inner reveal">
+    <p class="section-label">深度风貌</p>
+    <h2 class="section-title">不止于海，<em>感受极致的城市折叠</em></h2>
+    <div style="font-size:15px; color:#3a3530; line-height:2; margin-bottom: 40px;">
+        除了硬核的航海与专业的财富沙龙，我们同样注重为您提供充满张力的文化体感。香港的迷人之处，正是在于它能在极短的距离内，展现出截然不同的生存哲学与视觉冲击。
+    </div>
+    
+    <div class="hk-narrative-grid">
+      <div class="hk-narrative-card">
+        <img src="pic3.jpg" alt="南丫岛风情" class="hk-narrative-img">
+        <h3 class="hk-narrative-title">南丫岛：时光停滞的离岛生态</h3>
+        <p class="hk-narrative-body">当帆船靠近南丫岛，钢铁森林被郁郁葱葱的植被与低矮村屋取代。这里没有汽车的喧嚣，只有海风与渔网的闲适。我们将带您漫步于此，在慢节奏中品尝带着海风咸鲜的地道风味。这是喧嚣之外的一片净土，让紧绷的神经在原生态的渔村风貌中彻底松弛。</p>
+      </div>
+      <div class="hk-narrative-card">
+        <img src="pic4.jpg" alt="太平山顶俯瞰" class="hk-narrative-img">
+        <h3 class="hk-narrative-title">太平山顶：百年繁华的视觉巅峰</h3>
+        <p class="hk-narrative-body">如果南丫岛代表了出世的宁静，那太平山顶则是入世的极尽繁华。乘坐逾百年历史的复古缆车缓缓登顶，维多利亚港两岸磅礴的天际线在眼前毫无保留地铺开。当夜幕降临，置身于这片创造了无数财富奇迹的金融热土之上，俯瞰璀璨灯火，您定会对格局与视野产生更深刻的共鸣。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="hl-section">
+  <div class="hl-inner reveal">
+    <p class="section-label">为什么是这次</p>
+    <h2 class="section-title">四个<em>只此一次</em>的理由</h2>
+    <div class="hl-grid" style="margin-top:44px;">
+      <div class="hl-card">
+        <div class="hl-num">01</div>
+        <h4 class="hl-title">帆船跨境入港，这条路线本身就是稀缺</h4>
+        <p class="hl-body">以大型帆船从深圳湾出发，穿越伶仃洋正式入境香港——这不是任何一家旅行社的常规产品，市面上没有同类选项。会长带队，双船长护航，新手老手皆宜。</p>
+      </div>
+      <div class="hl-card">
+        <div class="hl-num">02</div>
+        <h4 class="hl-title">南丫岛，香港被低估的一面</h4>
+        <p class="hl-body">绕开游客人群，专属导游带领深入渔村，品尝地道离岛风味——这是香港本地人珍视、却鲜少出现在旅行攻略里的地方。</p>
+      </div>
+      <div class="hl-card">
+        <div class="hl-num">03</div>
+        <h4 class="hl-title">私人银行会所 · 不对外的那场对话</h4>
+        <p class="hl-body">受邀嘉宾于私人银行会所闭门分享，议题涉及全球政经格局与家庭财富视野。不录制，不传播，只属于在场的人。</p>
+      </div>
+      <div class="hl-card">
+        <div class="hl-num">04</div>
+        <h4 class="hl-title">同行者，是这次旅程最大的增值</h4>
+        <p class="hl-body">共同出海，共享一顿饭，共看一次日落——四天三晚建立的连接，比任何名片交换都更有分量。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="speaker-section reveal">
+  <p class="section-label">闭门沙龙 · 受邀嘉宾</p>
+  <h2 class="section-title">一场关于<em>格局与财富视野</em>的对话</h2>
+  <div class="speaker-card">
+    <div class="speaker-name">特邀嘉宾</div>
+    <div class="speaker-role">财富规划领域独立研究者与实践者</div>
+    <div class="speaker-creds">
+      <span class="cred-tag">国家高级理财规划师 CHFP 一级</span>
+      <span class="cred-tag">CFA · RFP · CWMA 国际认证讲师</span>
+      <span class="cred-tag">交通大学财富管理学院 讲师</span>
+      <span class="cred-tag">《理财周刊》特邀嘉宾</span>
+      <span class="cred-tag">国家二级心理咨询师</span>
+    </div>
+    <div class="speaker-topic">
+      <strong>沙龙方向</strong>
+      <p style="margin-top:10px;">从全球政经格局切入，探讨当下宏观环境对普通家庭的真实影响。不谈抽象理论，只聊在座每个人都绕不过去的现实问题：在不确定的时代，如何为家庭的下一步做好准备？财务安全感从何而来？孩子的教育路径，又该如何在更宽的视野下重新审视？</p>
+      <div class="topic-tags">
+        <span class="topic-tag">全球政经形势</span>
+        <span class="topic-tag">家庭财务规划</span>
+        <span class="topic-tag">子女教育视野</span>
+        <span class="topic-tag">资产配置思维</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="services">
+  <div class="svc-inner reveal">
+    <p class="section-label">行程服务</p>
+    <h2 class="section-title">全程<em>高端定制</em>，每个环节都已安排妥当</h2>
+    <div class="svc-grid">
+      <div class="svc-card"><span class="svc-icon">🚄</span><div class="svc-title">高铁直达，无缝衔接</div><div class="svc-body">武汉出发高铁直达深圳；行程结束西九龙站直通高铁返汉，全程无需换乘，从容往返。</div></div>
+      <div class="svc-card"><span class="svc-icon">⛵</span><div class="svc-title">大型帆船，双船长全程</div><div class="svc-body">专业大型帆船跨境出海，两名持证船长随行.会长亲自带队，新手无需任何帆船经验。</div></div>
+      <div class="svc-card"><span class="svc-icon">🏨</span><div class="svc-title">精选酒店，统一安排</div><div class="svc-body">深圳与香港住宿均为精选品质酒店，地段优越，统一预订，无需自行操心.</div></div>
+      <div class="svc-card"><span class="svc-icon">🗺</span><div class="svc-title">专属导游，南丫岛全程</div><div class="svc-body">配备中文专属导游，讲解岛屿人文历史，带领深度探访，非景区走马观花.</div></div>
+      <div class="svc-card"><span class="svc-icon">🏛</span><div class="svc-title">私人银行会所，闭门沙龙</div><div class="svc-body">场地、嘉宾、议程均已提前落实，仅限本次参与者，私密性有保障.</div></div>
+      <div class="svc-card"><span class="svc-icon">🚌</span><div class="svc-title">全程地面接驳</div><div class="svc-body">靠岸后大巴统一接驳；行程各节点交通均已统筹安排，无需自行规划.</div></div>
+    </div>
+  </div>
+</div>
+
+<hr class="rule">
+
+<div class="quote-section reveal">
+  <div class="quote-mark">"</div>
+  <p class="quote-text">有一些时刻，不是在海上待过的人，说不清楚.</p>
+  <p class="quote-attr">写给每一位出发的人</p>
+</div>
+
+<hr class="rule">
+
+<div class="notes reveal">
+  <h3 class="notes-title">参与须知</h3>
+  <div class="notes-grid">
+    <div class="note-item"><div class="note-dot"></div><div class="note-text"><span class="note-label">证件要求&emsp;</span>请确保持有效港澳通行证及香港签注，出发前请自行确认有效期.</div></div>
+    <div class="note-item"><div class="note-dot"></div><div class="note-text"><span class="note-label">出海准备&emsp;</span>帆船出海为户外活动，建议携带防晒及防风外套；如有晕船顾虑，请提前告知，我们将做好相应预案.</div></div>
+    <div class="note-item"><div class="note-dot"></div><div class="note-text"><span class="note-label">名额限制&emsp;</span>本次行程严格限额，额满即止，有意参与请尽早确认.</div></div>
+    <div class="note-item"><div class="note-dot"></div><div class="note-text"><span class="note-label">报名咨询&emsp;</span>请联系本次项目负责人获取详细报价及报名方式，最终行程细节以确认版本为准.</div></div>
+  </div>
+</div>
+
+<div class="footer">
+  <div>
+    <div class="f-title">御风东渡 · 深港帆船私享之旅</div>
+    <div class="f-sub">高端定制 · 限额私享 · 帆船协会会长带队</div>
+  </div>
+  <div class="f-right">私享计划 · 2026<br>仅供参考使用</div>
+</div>
+
+<script>
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*60);obs.unobserve(e.target);}
+  });
+},{threshold:0.07});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
